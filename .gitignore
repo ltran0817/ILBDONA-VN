@@ -1,0 +1,11 @@
+# ignore .mp3 files
+*.mp3
+
+#ignore data .json files
+	city.list.json
+	city.list.min.json
+	config.json
+
+# ignore .env
+.env
+
