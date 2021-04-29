@@ -9,3 +9,5 @@ config.json
 # ignore .env
 .env
 
+# ignore old files
+src/1bot.js
