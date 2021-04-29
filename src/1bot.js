@@ -369,8 +369,9 @@ client.on('ready', () => {
         });
         // console.log(`Amount require: ${Math.abs(amount)}`);
       } else {
-        message.channel.send('Unknown Equipment Type');
-        amount = 0;
+        validFormat = false
+        // message.channel.send('Unknown Equipment Type');
+        // amount = 0;
       };
     } else {
       let res = "```!caphras [equipment type] [from level] [to level]```";
