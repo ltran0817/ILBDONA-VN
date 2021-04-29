@@ -39,7 +39,11 @@ client.on('message', message => {
   const args = message.content.slice(prefix.length).split(/ +/);
   const command = args.shift().toLowerCase();
   // console.log(`command:${command}, arguments: ${args}`);
-  client.commands.get(command).execute(message, args);
+  try {
+    client.commands.get(command).execute(message, args);
+  } catch (error) {
+    console.log(error);
+  }
 })
 //
 client.login(process.env.DISCORDJS_BOT_TOKEN);
