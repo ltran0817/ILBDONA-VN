@@ -40,9 +40,9 @@ client.on('message', message => {
   const command = args.shift().toLowerCase();
   // console.log(`command:${command}, arguments: ${args}`);
   try {
-    client.commands.get(command).execute(message, args);
+    client.commands.get(command).execute(client, message, args);
   } catch (error) {
-    console.log(error);
+    message.channel.send('Command not exist!');
   }
 })
 //
