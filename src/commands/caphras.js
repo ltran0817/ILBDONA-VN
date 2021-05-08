@@ -1,7 +1,7 @@
 module.exports = {
   name: 'caphras',
   description: 'display caphras information',
-  execute(client, message, args) {
+  execute(client, message, args, db) {
     const caphrasMainHand = { //[caphras_amount, ap, acc]
       0: [0, 0, 0],
       1: [297, 1, 0],

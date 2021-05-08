@@ -1,7 +1,7 @@
 module.exports = {
   name: 'val',
   description: 'Calculate the amount of money you get back from BDO Market in under different conditions',
-  execute(client, message, args) {
+  execute(client, message, args, db) {
     let withVP = 0;
     let withoutVP = 0;
     let withFMnVP = 0;

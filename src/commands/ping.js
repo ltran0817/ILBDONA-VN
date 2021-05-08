@@ -1,12 +1,7 @@
-const testing = () => {
-  console.log("command ping is here");
-}
-
 module.exports = {
   name: 'ping',
   description: 'test connection',
-  execute(client, message, args) {
-    testing();
+  execute(client, message, args, db) {
     message.channel.send('pong');
   }
 }

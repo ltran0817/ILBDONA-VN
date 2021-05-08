@@ -4,7 +4,7 @@ const fetch = require("node-fetch");
 module.exports = {
   name: 'weather',
   description: 'return weather information of user input',
-  execute(client, message, args) {
+  execute(client, message, args, db) {
     let absoluteURL = "";
     const location = args[0];
     if (location.match(/^[0-9]{5}(?:-[0-9]{4})?$/i)) {

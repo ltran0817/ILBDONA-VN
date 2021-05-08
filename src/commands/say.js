@@ -22,7 +22,7 @@ const quickstart = async (content, langCode, langName) => {
     },
     audioConfig: {
       audioEncoding: 'MP3',
-      speakingRate: 1.2,
+      speakingRate: 1.1,
     }
   }
   const [response] = await ttsClient.synthesizeSpeech(request);
@@ -35,7 +35,7 @@ const quickstart = async (content, langCode, langName) => {
 module.exports = {
   name: 'say',
   description: 'execute text-to-speech command from user in voice channel',
-  async execute(client, message, args) {
+  async execute(client, message, args, db) {
     // args[0]: if language code or full name "en-us" or "en-us-Wavenet-D" provided.
     // Then check the args provided following the supported format if not => default vi-VN-Wavenet-B
     // if args[0] not follow the syntax => default vi-VN-Wavenet-B
