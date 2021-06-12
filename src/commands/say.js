@@ -6,14 +6,14 @@ const supportedLangs = require('../../language_code.json');
 
 // 2 HELPER FUNCTIONS
 // Play Audio File
-const playingAudioFile = async (message) => {
+const playingAudioFile = async (message, guildID) => {
   const connection = await message.member.voice.channel.join();
-  connection.play('output.mp3').on('finish', () => {
+  connection.play(`./servers/${guildID}/output.mp3`).on('finish', () => {
     console.log("Finished playing audio");
   }).on('error', console.error);
 };
 // Request Audio File from google based on content given by users
-const quickstart = async (content, langCode, langName) => {
+const quickstart = async (content, langCode, langName, guildID) => {
   const request = {
     input: { text: content },
     voice: {
@@ -28,7 +28,7 @@ const quickstart = async (content, langCode, langName) => {
   const [response] = await ttsClient.synthesizeSpeech(request);
   // Write the binary audio content to a local file
   const writeFile = util.promisify(fs.writeFile);
-  await writeFile('output.mp3', response.audioContent, 'binary');
+  await writeFile(`./servers/${guildID}/output.mp3`, response.audioContent, 'binary');
   console.log("Finished Writing audio file");
 };
 
@@ -41,6 +41,7 @@ module.exports = {
     // if args[0] not follow the syntax => default vi-VN-Wavenet-B
     try {
       const VOICE_CHANNEL = message.member.voice.channel;
+      const GUILD_ID = message.guild.id;
       let TTS_CONTENT = "";
       let LANG_CODE = "vi-VN";
       let LANG_FULLNAME = "vi-VN-Wavenet-B";
@@ -79,7 +80,7 @@ module.exports = {
       //check if user is in voice channel
       if (VOICE_CHANNEL && validLangFormat) {
         // quickstart(TTS_CONTENT, LANG_CODE, LANG_FULLNAME);
-        await quickstart(TTS_CONTENT, LANG_CODE, LANG_FULLNAME); await playingAudioFile(message);
+        await quickstart(TTS_CONTENT, LANG_CODE, LANG_FULLNAME, GUILD_ID); await playingAudioFile(message, GUILD_ID);
       } else {
         if (validLangFormat) {
           message.reply("You need to be in voice channel to use this command!");

@@ -37,7 +37,7 @@ guildModelWatcher.on('change', (change) => {
       console.log("result of updated document is: ", res);
       let resIndex = knownServers.servers.findIndex(server => server._id === res._id);
       knownServers.servers[resIndex] = res;
-    };
+    }
   });
 })
 //discord client
@@ -68,6 +68,12 @@ client.once('ready', () => {
           console.log("New Guild Created!");
         } else {
           knownServers.servers.push(res);
+          if (fs.existsSync(`./servers/${guildID}`)) {
+            console.log("Directory exists.");
+          } else {
+            console.log("Directory does not exist.");
+            fs.mkdirSync(`./servers/${guildID}`);
+          }
         }
       }
     });
