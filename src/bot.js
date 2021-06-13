@@ -90,8 +90,24 @@ client.on('message', message => {
   const command = args.shift().toLowerCase();
   // console.log(`command:${command}, arguments: ${args}`);
   try {
-    client.commands.get(command).execute(client, message, args, db);
+    let currentCommand = client.commands.get(command);
+    if (!currentCommand.permissions){
+      currentCommand.execute(client, message, args, db);
+    } else {
+      let hasPermissions = true;
+      currentCommand.permissions.map(perm =>{
+        if(!message.member.hasPermission(perm)){
+          hasPermissions = false;
+        }
+      })
+      if(hasPermissions){
+        currentCommand.execute(client, message, args, db);
+      } else{
+        message.channel.send(`command require special permissions ${currentCommand.permissions}`);
+      }
+    }
   } catch (error) {
+    console.log(error);
     message.channel.send('Command not exist!');
   }
 })
