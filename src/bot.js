@@ -1,6 +1,7 @@
 // import libraries
 require('dotenv').config();
 const apiKeys = require('../config.json');
+const DISCORDJS_BOT_TOKEN = ('../config.json');
 const { MONGODB_URI } = require('../config.json');
 const mongoose = require('mongoose');
 let knownServers = { servers: [] };
