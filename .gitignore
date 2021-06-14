@@ -11,3 +11,5 @@ config.json
 
 # ignore old files
 src/1bot.js
+node_modules
+servers/*
