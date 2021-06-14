@@ -20,3 +20,8 @@
    - Go to `application_default_credentials.json` paste in your info
    - Run `gcloud config set project PROJECT_ID`
 
+3. To run the bot on pm2:
+  - `npm install pm2 -g`
+  - Inside the git folder run: `pm2 ecosystem` 
+  - Copy everything inside `ecosystem.config.json`
+  - Make changes to the file if necessary.

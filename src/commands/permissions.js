@@ -40,7 +40,6 @@ module.exports = {
       if(message.member.hasPermission(perm)){
         userPermissions.push(perm);
       };
-      console.log(userPermissions);
     })
     message.channel.send(`You have ${userPermissions}`);
   }
